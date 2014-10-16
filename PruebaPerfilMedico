@@ -1,0 +1,11 @@
+package pruebaperfilmedico;
+
+public class PruebaPerfilMedico {
+
+
+    public static void main(String[] args) {
+        PerfilMedico Eduardo = new PerfilMedico("Eduardo", "Uribe", "Masculino", 29, 12, 1995, 173, 71);
+        System.out.println(Eduardo);
+    }
+    
+}
