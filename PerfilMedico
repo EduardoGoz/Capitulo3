@@ -1,0 +1,126 @@
+package pruebaperfilmedico;
+
+public class PerfilMedico {
+    private String Nombre;
+    private String Apellido;
+    private String Sexo;
+    private int Dia;
+    private int Mes;
+    private int Año;
+    private double Altura;
+    private double Peso;
+    private int Edad;
+    private int FrecuenciaCardiacaMaxima;
+    private double FrecuenciaCardiaca2;
+    private double FrecuenciaCardiaca1;
+    private double Bmi;
+    private double AlturaM;
+
+    public PerfilMedico( String nombre, String apellido, String sexo, int dia, int mes, int año, double altura, double peso ){
+       
+        if( mes > 12 && mes < 0 ){
+            Mes = 0;
+        }
+        if( año < 0 ){
+            Año = 0;
+        }
+        if( dia > 31 && dia < 0 ){
+            Dia = 0;
+        }
+        if( altura < 0 ){
+            Altura = 0;
+        }
+
+        Nombre = nombre;
+        Apellido = apellido;
+        Sexo = sexo;    
+        Dia = dia;
+        Mes = mes;
+        Año = año;
+        Altura = altura;
+        Peso = peso;
+
+        obtenerEdad( Año);
+        obtenerBMI( altura, peso);
+    }
+
+    //Set's
+    public void setNombre( String nombre ){
+        Nombre = nombre;
+    }
+    public void setApellido( String apellido ){
+        Apellido = apellido;
+    }
+    public void setSexo( String sexo ){
+        Sexo = sexo;
+    }
+    public void setDia( int dia ){
+        Dia = dia;
+    }
+    public void setMes( int mes ){
+        Mes = mes;
+    }
+    public void setAño( int año ){
+        Año = año;
+    }
+    public void setAltura( double altura ){
+        Altura = altura;
+    }
+    public void setPeso( double peso ){
+        Peso = peso;
+    }
+
+    //Get's
+    public String getNombre(){
+        return Nombre;
+    }
+    public String getApellido(){
+        return Apellido;
+    }
+    public String getSexo(){
+        return Sexo;
+    }
+    public int getDia(){
+        return Dia;
+    }
+    public int getAño(){
+        return Año;
+    }
+    public int getMes(){
+        return Mes;
+    }
+    public double getAltura(){
+        return Altura;
+    }
+    public double getPeso(){
+        return Peso;
+    }
+
+    public void obtenerBMI( double altura, double peso ){
+        AlturaM = altura / 100;
+        Bmi = peso / ( AlturaM * AlturaM);
+    }
+
+    public void obtenerEdad( int año){
+        if( Mes >= 10 && Dia > 16 ){
+            año++;
+        }        
+        Edad = 2014 - año;
+        
+        obtenerFrecuencia( Edad );
+    }
+    public void obtenerFrecuencia( int edad ){
+        FrecuenciaCardiacaMaxima = 220 - edad;
+        rangoFrecuenciaCardiaca( FrecuenciaCardiacaMaxima );
+    }
+    public void rangoFrecuenciaCardiaca( int maximo ){
+        FrecuenciaCardiaca1 = maximo * 0.5;
+        FrecuenciaCardiaca2 = maximo * 0.85;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Datos del Paciente\nNombre: %s\nApellido: %s\nSexo: %s\nFecha de nacimiento: %d / %d / %d\nEdad: %d años\nAltura: %.2f centímetros; %.2f metros\nPeso: %.2f kilogramos\nFrecuencia máxima es: %d pulsos por minuto\nRango de frecuencia cardica esperada oscila entre: %.2f y %.2f pulsos por minuto\nIndice de masa corporal: %.2f bmi", Nombre, Apellido, Sexo, Dia, Mes, Año, Edad, Altura, AlturaM, Peso, FrecuenciaCardiacaMaxima, FrecuenciaCardiaca1, FrecuenciaCardiaca2, Bmi );
+    }
+}
+
